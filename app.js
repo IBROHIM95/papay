@@ -2,6 +2,7 @@ const express = require('express')
 
 const app = express();  
 const http  = require('http')
+const router = require('./router')
 
 
 // ModeDB chaqirish
@@ -21,5 +22,7 @@ app.set('views', 'views')
 app.set('view engine', 'ejs') 
 
 //4 routing codlar
+
+app.use('/', router);
 
 module.exports = app
