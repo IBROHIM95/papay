@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express();  
 const http  = require('http')
-const router = require('./router')
+const router = require('./router.js')
 
 
 // ModeDB chaqirish
