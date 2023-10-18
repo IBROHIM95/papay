@@ -1,7 +1,7 @@
-// class Member {
-//     constructor() {
+class Member {
+    constructor() {
 
-//     }
-// }
+    }
+}
 
-// module.exports = Member
+module.exports = Member
