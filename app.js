@@ -1,13 +1,13 @@
 const express = require('express') 
 
 const app = express();  
-const http  = require('http')
+// const http  = require('http')
 const router = require('./router.js')
 
 
 // ModeDB chaqirish
-const db = require("./server").db();
-const mongodb = require('mongodb')
+// const db = require("./server").db();
+// const mongoose = require('mongoose')
 
 
 //1 KIRISH codlar
