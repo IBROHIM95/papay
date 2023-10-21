@@ -22,7 +22,7 @@ app.set('views', 'views')
 app.set('view engine', 'ejs') 
 
 //4 routing codlar
-
-app.use('/', router);
+// app.use('/resto', router_bssr); // react, admin va userlar uchun kerak
+app.use('/', router); // haridorlar uchun kerak 
 
 module.exports = app

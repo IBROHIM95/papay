@@ -1,6 +1,27 @@
+const MemberModel = require('../scheme/member.module.js')
+const Definer = require('../lib/mistake.js')
+
+
 class Member {
     constructor() {
+     this.memberModel = MemberModel
+    }
 
+    async signupData(input) {
+        try{
+             const new_member  = new this.memberModel(input) ;
+            try{
+              const result  = await new_member.save();
+            } catch(mongo_err) {
+                console.log(mongo_err);
+               throw new Error(Definer.auth_err1)
+            }
+        
+            result.mp_password = '';
+         return result
+        } catch (err) {
+           throw err
+        }
     }
 }
 

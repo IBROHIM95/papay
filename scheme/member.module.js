@@ -1,5 +1,5 @@
 const mongoose= require('mongoose');
-const { member_type_enums, members_status_enums } = require('../lib/config');
+const { member_type_enums, member_status_enums, ordernary_enums, } = require('../lib/config');
 
 const memberScheme = new mongoose.Schema({
     mb_nick: {
@@ -7,15 +7,16 @@ const memberScheme = new mongoose.Schema({
         required : true,
         index : {unique: true, sparse: true}
     },
-    mb_phone : {
-        type : String,
-        required : true
-    },
+    mb_phone: {
+        type: String,
+        required: true,
+        index: { unique: true, sparse: true },
+      },
     
     mb_password : {
         type : String,
         required : true,
-        select: false,
+        select: false
     },
     mb_type: {
         type : String,
@@ -31,30 +32,30 @@ const memberScheme = new mongoose.Schema({
         required : false,
         dafault : 'ACTIVE',
         enum: {
-            values : members_status_enums,
+            values : member_status_enums,
             message : '{VALUES} isnot among permitted values '
         }
     },
     mb_full_name : {
         type: String,
-        required: false,
+        required: false
     },
     mb_address : {
         type:String ,
-        required : false,
+        required : false
     },
     mb_description : {
         type: String,
-        required : false,
+        required : false
     },
     mb_image : {
         type : String,
-        required : false,
+        required : false
     },
     mb_point : {
         type : Number,
         required : false,
-        default : 0,
+        default : 0
     },
     mb_top : {
         type: String ,
@@ -85,10 +86,10 @@ const memberScheme = new mongoose.Schema({
         type: String, 
         required : false,
         default : 0
-    }, 
-    {timestamps: true},
+    } ,
+    
     
     // avtomatik mongoose 2taqiymat beradi created va update
-});
+}, {timestamps: true});
 
 module.exports = mongoose.model('Member', memberScheme )
