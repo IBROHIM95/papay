@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const {product_collection_enums} = require('../lib/config')
+const {product_collection_enums,product_status_enums,
+    product_size_enums,product_value_enums} = require('../lib/config')
 
 
 
@@ -88,7 +89,7 @@ const productSchema = new mongoose.Schema({
     },
 
     restaurant_mb_id : {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref : 'Member', 
         required : false
     },
