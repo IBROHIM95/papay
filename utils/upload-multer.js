@@ -19,7 +19,7 @@ function getTargetImageStore(address) {
     )
 }
 
-  makeUpolader = (address)=> {
+  makeUploader = (address)=> {
  const storage = getTargetImageStore(address);
  return multer({storage : storage})
 }

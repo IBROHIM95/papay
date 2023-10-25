@@ -1,0 +1,1 @@
+const ProductModel = require('../scheme/product.module')
