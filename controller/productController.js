@@ -3,6 +3,7 @@ const assert = require('assert');
 const Product = require('../models/Product')
 
 
+
 let productController = module.exports
 
 productController.getAllProducts = async(req,res) => {
@@ -43,8 +44,15 @@ productController.addNewProduct = async(req,res) => {
 productController.updateChosenProduct = async(req,res) => {
   try{
     console.log('POST: cont/updateChosenProduct ')
-  } catch{
+    const product = new Product();
+    const id = req.params.id;
+    const result = await product.updateChosenProductData(
+      id, req.body, req.member._id);
+    await res.json({state : 'succes', data :result })
+    
+  } catch(err) {
     console.log(`ERROR, cont/updateChosenProduct, ${err.message}`);
+    res.json({state : 'fail', message : err.message})
     
   }
 }
