@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const {product_collection_enums,product_status_enums,
-    product_size_enums,product_value_enums} = require('../lib/config')
+    product_size_enums,product_valume_enums} = require('../lib/config')
 
 
 
@@ -61,7 +61,7 @@ const productSchema = new mongoose.Schema({
             return (this.product_collection === 'drink')
         },
         enum : {
-            values : product_value_enums,
+            values : product_valume_enums,
             message : '{VALUE} isnot permitted enum values',
         }
     },
