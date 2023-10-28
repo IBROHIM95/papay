@@ -6,8 +6,8 @@ const makeUploader_product = require('./utils/upload-multer')('products');
            //BSSR EJS
 
 router_bssr
-.get("/signup", restaurantController.getSignupMyRestaurant )
-.post("/signup", restaurantController.signupProccess );
+.get("/sign-up", restaurantController.getSignupMyRestaurant )
+.post("/sig-nup", restaurantController.signupProccess );
 
 router_bssr
 .get("/login-page", restaurantController.getLoginMyRestaurant )
@@ -15,6 +15,8 @@ router_bssr
 
 router_bssr.get("/logout", restaurantController.logout );
 router_bssr.get("/check-me", restaurantController.checkSessions );
+
+router_bssr.get('/', restaurantController.home)
 
 router_bssr.get("/products/menu", restaurantController.getMyRestaurantProducts );
 
