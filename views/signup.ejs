@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="/css/login.css">
 
 <body>
-  <form 
+  <form
+  onsubmit="return validateSignUpForm()" 
   class="login_container"
   method="POST"
   action="/resto/sign-up"
@@ -22,10 +23,12 @@
       <label >Foydalanuvchining ismi</label>
       <input
         type="text"
+        class="mb_nick"
         placeholder="Foydalanuvchinivismi"
         value=""
-        name="mb_nick" 
-        required/>
+        name="mb_nick"
+        required 
+        />
     </div>
      <div class="sign_up_frame" >
       <label >Telefon raqam</label>
@@ -34,7 +37,9 @@
         placeholder="Telefon raqam"
         value=""
         name="mb_phone" 
-        required/>
+        class="mb_phone"
+        required 
+       />
     </div>
   </div>
     <div class="sign_input_frame" >
@@ -44,8 +49,10 @@
           type="password"
           placeholder="passwordni kiriting"
           value=""
-          name="mb_password" 
-          required/>
+          class="mb_password"
+          name="mb_password"
+          required  
+          />
       </div>
        <div class="sign_up_frame" >
         <label >Passwordni tasdiqlash</label>
@@ -53,8 +60,10 @@
           type="password"
           placeholder="passwordni tasdiqlash"
           value=""
+          class="mb_confirm_password"
           name="mb_confirm_password" 
-          required/>
+          required 
+          />
       </div>
     </div>
 
@@ -68,12 +77,12 @@
                 class="upload-name"
                 value="Rasmni tanlang"
                 disabled = 'disabled' />
-               <label for="">Rasmni yuklash</label>
+               <label for="input_file">Rasmni yuklash</label>
                <input
                type="file"
                id="input_file"
                name="restaurant_img"
-               placeholder="passwordni tasdiqlash"
+               
                class="upload-hidden form-control-file restaurant_img" /> 
              </div>
              <p class="thumbnail_desc" >
@@ -92,5 +101,65 @@
 
 </form>
 </body>
+
+<script>
+
+$(function () {
+  let fileTarget = $(".filebox .upload-hidden");
+  let filename = '';
+  fileTarget.on('change', function() {
+    if(window.FileReader) {
+      const uploading_file = $(this)[0].files[0];
+      const fileType = uploading_file['type'];
+      const validImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+      if(!validImageTypes.includes(fileType)) {
+        alert(
+          'Iltimos ruhsat etilgan formatdagi rasmlarni yuklang'
+        );
+      }else{
+        if(uploading_file) {
+          console.log(URL.createObjectURL(uploading_file));
+          $('.upload_img_frame')
+          .attr('src', URL.createObjectURL(uploading_file))
+          .addClass('success')
+        }
+        filename = uploading_file.name
+      }
+
+    }
+    $(this).siblings('.upload-name').val(filename)
+  })
+}
+)
+
+
+function validateSignUpForm() {
+  const mb_nick = $('.mb_nick').val();
+  const mb_phone = $('.mb_phone').val();
+  const mb_password = $('.mb_password').val();
+  const mb_confirm_password = $('.mb_confirm_password').val();
+  const restaurant_img = $('.restaurant_img').get(0).files[0] ?? null
+
+  if(
+    mb_nick == '' ||
+    mb_phone == '' ||
+    mb_password == '' ||
+    mb_confirm_password == '' ){
+      alert('Iltimos hamma malumotlarni kiriting')
+      return false
+    } else if (mb_password !== mb_confirm_password){
+      alert('Iltimos passwordni togri kiriting')
+      return false
+    }
+
+    if(!restaurant_img) {
+      alert('Iltimos rasm yuklang')
+      return false
+    }
+
+    return true
+
+}
+</script>
 
 <%- include('includes/footer') %>
