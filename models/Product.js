@@ -45,13 +45,15 @@ class Product {
         mb_id = shapeIntoMongooseObjectId(mb_id);
 
         const result = await this.productModel
+        
         .findByIdAndUpdate({_id: id, restaurant_mb_id : mb_id}, updated_data, {
           runValidators: true,
           lean: true,
           returnDocument: 'after'
+          
         })
         .exec();
-
+          
         assert.ok(result, Definer.general_err1)
         return result
       } catch(err) {
