@@ -80,32 +80,73 @@ html, body {
     flex-direction: column;
     align-items: center;
 }
-
-.new_dish_text{
-   
-   
-    font-family: 'Segoe UI';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 25px;
-    color: #ce2929;
-    margin-bottom: 30px;
-}
-.new_dis_text{
-   
+.restaurant_container .resto_table{
     position: relative;
-    width: 100%;
+    width: 85%;
+    height: auto;
+    margin-top: 30px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 25px;
-    color: #ce2929;
-    margin-bottom: 30px;
+    background-color: #2c261e;
+   
+}
+
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+}
+
+.switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+ 
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 6px;
+    bottom: 3.5px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196f3;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before{
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round{
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
 }
 .spec-select {
     position: relative;
@@ -120,6 +161,32 @@ html, body {
     line-height: 26px;
     color: #4F547B;
 }
+.new_dish_text{
+    
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 25px;
+    color: #ce2929;
+    margin-bottom: 30px;
+}
+.new_dish_text{
+   
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 25px;
+    color: #ce2929;
+    margin-bottom: 30px;
+}
+
 .dishcontainer {
     position: relative;
     width: 100%;
