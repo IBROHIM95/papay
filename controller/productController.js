@@ -24,13 +24,13 @@ productController.addNewProduct = async(req,res) => {
     let data = req.body
 
     data.product_images  = req.files.map((ele) =>{
-      return ele.path
+      return ele.path.replace(/\\/g, '/')
     });
 
     const result =  await product.addNewProductData(data, req.member);
 
     const html = `<script>
-                   alert(new dusg added succesfully)
+                   alert('new product added succesfully');
                    window.location.replace('/resto/products/menu')
                  </script>`
     
@@ -48,7 +48,7 @@ productController.updateChosenProduct = async(req,res) => {
     const id = req.params.id;
     const result = await product.updateChosenProductData(
       id, req.body, req.member._id);
-    await res.json({state : 'succes', data :result })
+    await res.json({state : 'success', data :result })
     
   } catch(err) {
     console.log(`ERROR, cont/updateChosenProduct, ${err.message}`);
