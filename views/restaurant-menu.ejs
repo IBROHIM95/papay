@@ -23,7 +23,7 @@
           <span class="new_dish_text" >
             <%= member.mb_nick.toUpperCase() %> Taomlar menusi
           </span>
-          <table class="table table bordered table-hover">
+          <table class="table table-bordered table-hover">
             <thead class="thead-light" >
               <th scope="col" >T/r</th>
               <th scope="col" >Taom nomi</th>
@@ -54,14 +54,14 @@
           </table>
 
           <div class="long-input" style=" align-items: flex-end; margin-bottom: 25px; "  >
-           <button class="btn btn-primary hiding _btn" style="float: left;" >Taom qo'shish</button>
+           <button class="btn btn-primary hiding_btn" >Taom qo'shish</button>
           </div>
 
         </div>
         <form onsubmit="return validateForm()"  action="/resto/products/create" method="POST" 
-        class="dishcontainer" enctype="multipart/form-data" >
-           <div class="long_input" style="display: flex; align-items: center;  " >
-            <span   class="new_dis_text" >Yangi taom</span>
+        class="dish_container" enctype="multipart/form-data" >
+           <div class="long-input" style="display: flex; align-items: center;  " >
+            <span   class="new_dish_text" >Yangi taom</span>
            </div>
 
            <div>
@@ -76,7 +76,7 @@
 
            <div class="half_input_frame" >
              <div class="half_input">
-              <label for="">Taom narxi</label>
+              <label >Taom narxi</label>
               <input type="number" placeholder="taom narxi" name="product_price"  class="product_price" >
              </div>
              <div class="half_input">
@@ -164,6 +164,8 @@
 
   <script>
     $(function() {
+
+
       $('.product_collection').on('change', () => {
         const selected_value = $('.product_collection').val();
         if(selected_value === 'drink') {
@@ -175,14 +177,18 @@
         }
       })
 
+      $(".hiding_btn").on("click", () => {
+        $(".dish_container").slideToggle(500);
+        $(".hiding_btn").css("display", "none");
+      });
 
-      $('.hiding_btn').on('click', () => {
-         $('.dishcontainer').slideToggle(500);
-         $('.hiding_btn').css('display', 'none')
-      } )
-    });
 
-    $(".new_product_status").on("change", async function(e) {
+      // $('.hiding_btn').on('click', () => {
+      //    $('.dish_container').slideToggle(500);
+      //    $('.hiding_btn').css('display', 'none')
+      // } )
+
+      $(".new_product_status").on("change", async function(e) {
             const id = e.target.id;
             const product_status = $(`#${id}.new_product_status`).val();
 
@@ -206,6 +212,9 @@
                 console.log('updateChosenProduct err:', err);
             }
         });
+    });
+
+    
 
 
     function validateForm() {

@@ -2,6 +2,7 @@ const Member = require('../models/Member')
 const Product = require('../models/Product')
 const assert = require('assert');
 const Definer = require("../lib/mistake");
+const Restaurant = require('../models/Restaurant');
 
 
 let restaurantController = module.exports;
@@ -142,14 +143,18 @@ const html = `<script>
    
 };
 
-restaurantController.getAllRestaurants =async (req, res) =>{
+restaurantController.getAllRestaurants = async (req, res) =>{
   try{
     console.log('GET cont/getAllRestaurants');
 
-    res.render('all-Restaurants')
+    const restaurant = new Restaurant()
+    const restaurants_data = await restaurant.getAllRestaurantsData()
+    console.log(restaurants_data);
+
+    res.render('all-Restaurants', {restaurants_data: restaurants_data})
   
   }catch (err) {
-    console.log(`ERROR, cont/logout,${err.message}`);
+    console.log(`ERROR, cont/logout, ${err.message}`);
      res.json({state : 'fail', message : err.message})
   }
 }
