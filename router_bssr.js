@@ -37,5 +37,9 @@ router_bssr.get("/all-restaurant" ,
 restaurantController.validateAdmin,
 restaurantController.getAllRestaurants)
 
+router_bssr.post("/all-restaurant/edit" , 
+restaurantController.validateAdmin,
+restaurantController.upDateRestaurantByAdmin)
+
 
  module.exports = router_bssr
