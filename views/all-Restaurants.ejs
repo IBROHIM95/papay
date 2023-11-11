@@ -49,11 +49,16 @@
                     </label>
                 </td>
                 <td style="width: 13%;" >
-                    <select class="spec-select mb_status" id = '<%= value._id %>' >
+                    <!-- <select class="spec-select mb_status" id = '<%= value._id %>' >
                         <option value="ONPAUSE" <%= value.mb_status === 'ONPAUSE' ? 'selected' : '' %>  >ONPAUSE</option>
                         <option value="ACTIVE"  <%= value.mb_status === 'ACTIVE' ? 'selected' : '' %>  >ACTIVE</option>
                         <option value="DELETED"  <%= value.mb_status === 'DELETED' ? 'selected' : '' %>  >DELETED</option>
-                    </select>
+                    </select> -->
+                    <select class="spec-select mp_status" id="<%= value._id %>">
+                        <option value="ONPAUSE" <%= value.mp_status === 'ONPAUSE' ? 'selected' : '' %>>OnPause</option>
+                        <option value="ACTIVE" <%= value.mp_status === 'ACTIVE' ? 'selected' : '' %>>Active</option>
+                        <option value="DELETED"  <%= value.mp_status === 'DELETED' ? 'selected' : '' %>>Deleted</option>
+                      </select>
                 </td>
                 
                </tbody>
@@ -83,23 +88,49 @@
          .catch(err => console.log(err))
     })
 
-    $('.mb_status').on('change', function(e) {
-         const id = e.target.id;
-         const mb_status = $( `#${id}.mb_status`).val();
-         console.log('mb_status:' , mb_status);
-        
-         axios.post('/resto/all-restaurant/edit' , {id : id, mb_status : mb_status})
-         .then(response => {
-            const result = response.data;
-            if(result.state === 'success') alert('successfully updated');
-            else alert(result.message)
-         })
-         .catch(err => console.log(err))
-    })
-   
-  }
+    $(".mp_status").on('change', function(e) {
+      const id = e.target.id;
+      const mp_status = $(`#${id}.mp_status`).val();
+      console.log('mp_status:', mp_status);
+      
+      axios.post("/resto/all-restaurant/edit", {id: id, mp_status: mp_status})
+      .then(response => {
+        const result = response.data;
+        if(result.state === 'success') alert('Successfully Updated');
+          else alert(result.message);
+      }).catch(err => console.log(err))
+    });
+}
 
-  )
+)
+    // $('.mb_status').on('change', function(e) {
+    //      const id = e.target.id;
+    //      const mb_status = $( `#${id}.mb_status`).val();
+    //      console.log('mb_status:' , mb_status);
+        
+    //      axios.post('/resto/all-restaurant/edit' , {id : id, mb_status : mb_status})
+    //      .then(response => {
+    //         const result = response.data;
+    //         if(result.state === 'success') alert('successfully updated');
+    //         else alert(result.message)
+    //      })
+    //      .catch(err => console.log(err))
+    // })
+
+    // $(".mb_status").on('change', function(e) {
+    //   const id = e.target.id;
+    //   const mb_status = $(`#${id}.mb_status`).val();
+    //   console.log('mb_status:', mb_status);
+      
+    //   axios.post("/resto/all-restaurant/edit", {id: id, mb_status: mb_status})
+    //   .then(response => {
+    //     const result = response.data;
+    //     if(result.state === 'success') alert('Successfully Updated');
+    //       else alert(result.message);
+    //   }).catch(err => console.log(err))
+    // });
+   
+  
 
  </script>
 
