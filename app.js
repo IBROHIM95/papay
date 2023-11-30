@@ -4,6 +4,7 @@ const router = require('./router.js');
 const router_bssr = require('./router_bssr.js');
 let session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const cookieParser = require('cookie-parser')
 
 const store = new MongoDBStore({
     uri:process.env.MONGO_URL,
@@ -18,6 +19,7 @@ const store = new MongoDBStore({
 app.use(express.static('public'))  // har qanaqa browzerdan kirib kelgan zabros uchun folder ochiq degani 
 app.use(express.json()) // kirib kelayotgan json fotmatdagi datani object holatiga o'girib beradi
 app.use(express.urlencoded({extended:true})); // html form express qabul qilish uchun ishlatilinadi
+app.use(cookieParser())
 // 2 : session codlar
 app.use(
     session({
