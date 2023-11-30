@@ -61,6 +61,7 @@ memberController.createToken = (result) => {
       _id: result._id,
       mb_nick: result.mb_nick,
       mb_type: result.mb_type,
+      
     };
 
     const token = jwt.sign(
@@ -75,6 +76,21 @@ memberController.createToken = (result) => {
   }catch(err){
     throw err
 
-  }
+  }}
 
+memberController.checkMyAuthentication = (req, res) => {
+  try{
+     console.log('GET cont/checkMyAuthentication');
+     let token = req.cookies['access_token'];
+     console.log('token:::', token);
+
+     const member = token ? jwt.verify(token, process.env.SECRET_TOKEN) : null;
+     assert.ok(member, Definer.auth_err2);
+     
+     res.json({state : 'succed', message : member})
+   
+  }catch(err){
+   throw err
+  }
 }
+
